@@ -2,7 +2,6 @@
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -45,7 +44,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 set nowrap " No dividir la línea si es muy larga
 
 set cursorline " Resalta la línea actual
-set colorcolumn=+1 " Muestra la columna límite a 120 caracteres
+set colorcolumn=79 " Muestra la columna límite a 79 caracteres
 
 set hidden  " Permitir cambiar de buffers sin tener que guardarlos
 
