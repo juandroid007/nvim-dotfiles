@@ -10,6 +10,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 "*****************************************************************************
@@ -26,6 +27,9 @@ set mouse=a " Permite la integración del mouse (seleccionar texto, mover el cur
 set title
 
 set showmatch
+
+"set expandtab
+set list lcs=tab:\┆\·
 
 "****** Multi Cursor Parammeters *********************************************
 let g:multi_cursor_use_default_mapping=0
@@ -48,10 +52,32 @@ set colorcolumn=79 " Muestra la columna límite a 79 caracteres
 
 set hidden  " Permitir cambiar de buffers sin tener que guardarlos
 
+let g:clipboard = {
+  \   'name': 'xclip-xfce4-clipman',
+  \   'copy': {
+  \      '+': 'xclip -selection clipboard',
+  \      '*': 'xclip -selection clipboard',
+  \    },
+  \   'paste': {
+  \      '+': 'xclip -selection clipboard -o',
+  \      '*': 'xclip -selection clipboard -o',
+  \   },
+  \   'cache_enabled': 1,
+  \ }
+
 "******* Colorscheme *********************************************************
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
 if(has("termguicolors"))	
 	set termguicolors  " Activa true colors en la terminal
 endif
+
+set t_ut=
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=light  " Fondo del tema: light o dark
 let g:palenight_terminal_italics=1
