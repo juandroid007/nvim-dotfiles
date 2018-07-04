@@ -10,7 +10,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'Yggdroot/indentLine'
+Plug 'vim-scripts/redcode.vim'
 call plug#end()
 
 "*****************************************************************************
@@ -27,6 +27,8 @@ set mouse=a " Permite la integración del mouse (seleccionar texto, mover el cur
 set title
 
 set showmatch
+
+au BufRead,BufNewFile *.redcode,*.red set filetype=redcode
 
 "set expandtab
 set list lcs=tab:\┆\·
