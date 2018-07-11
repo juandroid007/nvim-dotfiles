@@ -3,7 +3,6 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -11,6 +10,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/redcode.vim'
+Plug 'vim-scripts/BufOnly.vim'
 call plug#end()
 
 "*****************************************************************************
@@ -25,6 +25,8 @@ set noshowmode
 set number " Muestra los números de las líneas
 set mouse=a " Permite la integración del mouse (seleccionar texto, mover el cursor)
 set title
+
+let g:deoplete#enable_at_startup = 1
 
 set showmatch
 
