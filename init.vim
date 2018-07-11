@@ -26,8 +26,6 @@ set number " Muestra los números de las líneas
 set mouse=a " Permite la integración del mouse (seleccionar texto, mover el cursor)
 set title
 
-let g:deoplete#enable_at_startup = 1
-
 set showmatch
 
 au BufRead,BufNewFile *.redcode,*.red set filetype=redcode
