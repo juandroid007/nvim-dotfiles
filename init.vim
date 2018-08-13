@@ -50,7 +50,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 set nowrap " No dividir la línea si es muy larga
 
 set cursorline " Resalta la línea actual
-set colorcolumn=79 " Muestra la columna límite a 79 caracteres
+set colorcolumn=80 " Muestra la columna límite a 79 caracteres
 
 set hidden  " Permitir cambiar de buffers sin tener que guardarlos
 
