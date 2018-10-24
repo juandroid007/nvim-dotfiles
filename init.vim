@@ -11,9 +11,12 @@ Plug 'itchyny/lightline.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/redcode.vim'
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'sakhnik/nvim-gdb'
 call plug#end()
 
 "*****************************************************************************
+
+let mapleader = ","
 
 map <silent> <C-o> :NERDTreeToggle<CR>
 let NERDTreeAutoDeleteBuffer = 1
@@ -21,6 +24,8 @@ tnoremap <Esc> <C-\><C-n>
 
 set laststatus=2
 set noshowmode
+
+set showcmd
 
 set number " Muestra los números de las líneas
 set mouse=a " Permite la integración del mouse (seleccionar texto, mover el cursor)
