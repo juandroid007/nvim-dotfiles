@@ -81,7 +81,7 @@ if (has("nvim"))
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-if(has("termguicolors"))	
+if(has("termguicolors"))
 	set termguicolors  " Activa true colors en la terminal
 endif
 
@@ -92,5 +92,15 @@ let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set background=light  " Fondo del tema: light o dark
 let g:palenight_terminal_italics=1
 colorscheme palenight  " Nombre del tema
-let g:lightline = { 'colorscheme': 'palenight' }
+let g:lightline = {
+      \ 'colorscheme': 'palenight',
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'neobimu' ] ]
+      \ },
+      \ 'component': {
+      \   'neobimu': 'ネオビム'
+      \ },
+      \ }
 "*****************************************************************************
