@@ -18,6 +18,9 @@ call plug#end()
 
 let mapleader = ","
 
+nnoremap <leader>m :make
+nnoremap <leader>r :make run
+
 map <silent> <C-o> :NERDTreeToggle<CR>
 let NERDTreeAutoDeleteBuffer = 1
 tnoremap <Esc> <C-\><C-n>
