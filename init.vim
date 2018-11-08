@@ -18,7 +18,12 @@ call plug#end()
 
 let mapleader = ","
 
+nnoremap <leader>w :w <CR>
+nnoremap <leader>x :x <CR>
+nnoremap <leader>q :q <CR>
+
 nnoremap <leader>m :make
+nnoremap <leader>M :make -B
 nnoremap <leader>r :make run
 
 map <silent> <C-o> :NERDTreeToggle<CR>
