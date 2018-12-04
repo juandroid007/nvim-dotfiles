@@ -8,12 +8,15 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'juandroid007/vim-multiple-cursors'
 Plug 'vim-scripts/redcode.vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'sakhnik/nvim-gdb'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 "*****************************************************************************
@@ -26,6 +29,8 @@ nnoremap <leader>x :x <CR>
 nnoremap <leader>X :xa <CR>
 nnoremap <leader>q :q <CR>
 nnoremap <leader>Q :qa! <CR>
+
+nnoremap <leader>goyo :Goyo <CR>
 
 nnoremap <leader>m :make
 nnoremap <leader>M :make -B
@@ -42,7 +47,14 @@ set noshowmode
 
 set showcmd
 
-set number " Muestra los números de las líneas
+set number relativenumber
+
+function! s:goyo_enter()
+   set number relativenumber
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+
 set mouse=a " Permite la integración del mouse (seleccionar texto, mover el cursor)
 set title
 
@@ -53,19 +65,7 @@ au BufRead,BufNewFile *.redcode,*.red set filetype=redcode
 "set expandtab
 set list lcs=tab:\┆\·
 
-"****** Multi Cursor Parammeters *********************************************
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<C-m>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<C-m>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-"*****************************************************************************
+let g:startify_change_to_dir = 0
 
 set nowrap " No dividir la línea si es muy larga
 
