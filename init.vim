@@ -12,6 +12,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/redcode.vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'sakhnik/nvim-gdb'
+Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 "*****************************************************************************
@@ -19,8 +21,11 @@ call plug#end()
 let mapleader = ","
 
 nnoremap <leader>w :w <CR>
+nnoremap <leader>W :wa <CR>
 nnoremap <leader>x :x <CR>
+nnoremap <leader>X :xa <CR>
 nnoremap <leader>q :q <CR>
+nnoremap <leader>Q :qa! <CR>
 
 nnoremap <leader>m :make
 nnoremap <leader>M :make -B
@@ -28,6 +33,8 @@ nnoremap <leader>r :make run
 
 map <silent> <C-o> :NERDTreeToggle<CR>
 let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
 tnoremap <Esc> <C-\><C-n>
 
 set laststatus=2
@@ -100,9 +107,9 @@ colorscheme palenight  " Nombre del tema
 let g:lightline = {
       \ 'colorscheme': 'palenight',
       \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'neobimu' ] ]
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ],
+      \             [ 'neobimu' ] ]
       \ },
       \ 'component': {
       \   'neobimu': 'ネオビム'
