@@ -11,7 +11,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'juandroid007/vim-multiple-cursors'
 Plug 'vim-scripts/redcode.vim'
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'sakhnik/nvim-gdb'
+Plug 'sakhnik/nvim-gdb', { 'do': './install.sh' }
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
