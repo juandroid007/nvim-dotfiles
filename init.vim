@@ -21,6 +21,27 @@ call plug#end()
 
 "*****************************************************************************
 
+func! WordProcessor()
+	" movement changes
+	map j gj
+	map k gk
+	map <Down> gj
+	map <Up> gk
+	imap <Down> <C-o>gj
+	imap <Up> <C-o>gk
+	" formatting text
+	setlocal formatoptions=1
+	setlocal noexpandtab
+	setlocal wrap
+	setlocal linebreak
+	" spelling and thesaurus
+	:Goyo
+	set nonumber norelativenumber
+endfu
+com! WP call WordProcessor()
+
+"*****************************************************************************
+
 let mapleader = ","
 
 nnoremap <leader>w :w <CR>
@@ -50,7 +71,7 @@ set showcmd
 set number relativenumber
 
 function! s:goyo_enter()
-   set number relativenumber
+	set number relativenumber
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -65,7 +86,9 @@ au BufRead,BufNewFile *.redcode,*.red set filetype=redcode
 "set expandtab
 set list lcs=tab:\┆\·
 
+autocmd User Startified setlocal cursorline
 let g:startify_change_to_dir = 0
+let g:startify_bookmarks = [ { 'c': '~/.config/nvim/init.vim' } ]
 
 set nowrap " No dividir la línea si es muy larga
 
@@ -75,22 +98,23 @@ set colorcolumn=80 " Muestra la columna límite a 79 caracteres
 set hidden  " Permitir cambiar de buffers sin tener que guardarlos
 
 let g:clipboard = {
-  \   'name': 'xclip-xfce4-clipman',
-  \   'copy': {
-  \      '+': 'xclip -selection clipboard',
-  \      '*': 'xclip -selection clipboard',
-  \    },
-  \   'paste': {
-  \      '+': 'xclip -selection clipboard -o',
-  \      '*': 'xclip -selection clipboard -o',
-  \   },
-  \   'cache_enabled': 1,
-  \ }
+			\   'name': 'xclip-xfce4-clipman',
+			\   'copy': {
+			\      '+': 'xclip -selection clipboard',
+			\      '*': 'xclip -selection clipboard',
+			\    },
+			\   'paste': {
+			\      '+': 'xclip -selection clipboard -o',
+			\      '*': 'xclip -selection clipboard -o',
+			\   },
+			\   'cache_enabled': 1,
+			\ }
 
 "******* Colorscheme *********************************************************
+
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 if(has("termguicolors"))
@@ -105,14 +129,15 @@ set background=light  " Fondo del tema: light o dark
 let g:palenight_terminal_italics=1
 colorscheme palenight  " Nombre del tema
 let g:lightline = {
-      \ 'colorscheme': 'palenight',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ],
-      \             [ 'neobimu' ] ]
-      \ },
-      \ 'component': {
-      \   'neobimu': 'ネオビム'
-      \ },
-      \ }
+			\ 'colorscheme': 'palenight',
+			\ 'active': {
+			\   'left': [ [ 'mode', 'paste' ],
+			\             [ 'readonly', 'filename', 'modified' ],
+			\             [ 'neobimu' ] ]
+			\ },
+			\ 'component': {
+			\   'neobimu': 'ネオビム'
+			\ },
+			\ }
+
 "*****************************************************************************
