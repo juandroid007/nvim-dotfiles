@@ -8,15 +8,18 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
-Plug 'juandroid007/vim-multiple-cursors'
+"Plug 'juandroid007/vim-multiple-cursors'
 Plug 'vim-scripts/redcode.vim'
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'sakhnik/nvim-gdb', { 'do': './install.sh' }
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'mhinz/vim-startify'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'Valloric/YouCompleteMe', { 'do': ':!./install.py --all' }
 call plug#end()
 
 "*****************************************************************************
@@ -40,6 +43,17 @@ func! WordProcessor()
 endfu
 com! WP call WordProcessor()
 
+func! MarkdownProcessor()
+	" formatting text
+	setlocal formatoptions+=a
+	setlocal noexpandtab
+	setlocal wrap
+	setlocal linebreak
+	:Goyo
+	set nonumber norelativenumber
+endfu
+com! MD call MarkdownProcessor()
+
 "*****************************************************************************
 
 let mapleader = ","
@@ -53,9 +67,13 @@ nnoremap <leader>Q :qa! <CR>
 
 nnoremap <leader>goyo :Goyo <CR>
 
+nnoremap <leader>p :CtrlPTag <CR>
+
 nnoremap <leader>m :make
 nnoremap <leader>M :make -B
 nnoremap <leader>r :make run
+
+com! YCMBear :!make -B
 
 map <silent> <C-o> :NERDTreeToggle<CR>
 let NERDTreeAutoDeleteBuffer = 1
@@ -83,12 +101,19 @@ set showmatch
 
 au BufRead,BufNewFile *.redcode,*.red set filetype=redcode
 
-"set expandtab
+" set expandtab
 set list lcs=tab:\┆\·
 
+" Startify
 autocmd User Startified setlocal cursorline
 let g:startify_change_to_dir = 0
 let g:startify_bookmarks = [ { 'c': '~/.config/nvim/init.vim' } ]
+
+" CtrlP
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(o|d)$'
+  \ }
 
 set nowrap " No dividir la línea si es muy larga
 
@@ -109,6 +134,10 @@ let g:clipboard = {
 			\   },
 			\   'cache_enabled': 1,
 			\ }
+
+"YCM preview window autoclose
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "******* Colorscheme *********************************************************
 
