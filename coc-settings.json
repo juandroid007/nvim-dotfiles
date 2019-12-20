@@ -1,0 +1,25 @@
+{
+	"suggest.timeout": 5000,
+	"diagnostic.enableMessage": "always",
+	"diagnostic.messageTarget": "float",
+	"coc.preferences.colorSupport": true,
+	"diagnostic.warningSign": "!",
+	"suggest.noselect": false,
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+			"rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls-cache"
+				}
+			}
+		},
+		"bash": {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"]
+		}
+	}
+}
