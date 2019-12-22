@@ -254,6 +254,7 @@ set noshowmode
 autocmd FileType haskell setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 set showcmd
 
