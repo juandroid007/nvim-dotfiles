@@ -37,6 +37,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
 Plug 'ron-rs/ron.vim'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'evanleck/vim-svelte'
 "Plug 'itchyny/vim-haskell-indent'
 
 "Plug 'Valloric/YouCompleteMe', { 'do': ':!./install.py --all' }
@@ -254,7 +255,11 @@ set noshowmode
 autocmd FileType haskell setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType typescript setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType svelte setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+autocmd BufNewFile,BufRead *.hbs set filetype=html
 
 set showcmd
 
