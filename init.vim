@@ -23,6 +23,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'mhinz/vim-startify'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
@@ -36,8 +37,14 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
 Plug 'ron-rs/ron.vim'
+Plug 'cespare/vim-toml'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'evanleck/vim-svelte'
+Plug 'gluon-lang/vim-gluon'
+Plug 'uiiaoo/java-syntax.vim'
+Plug 'vmchale/just-vim'
+Plug 'ollykel/v-vim'
+Plug 'juandroid007/palacinke-vim'
 "Plug 'itchyny/vim-haskell-indent'
 
 "Plug 'Valloric/YouCompleteMe', { 'do': ':!./install.py --all' }
@@ -231,6 +238,7 @@ nnoremap <leader>p :CtrlPTag <CR>
 nnoremap <leader>m :make
 nnoremap <leader>M :make -B
 nnoremap <leader>r :make run
+nnoremap <leader>f :!go fmt ./... <CR> :e <CR>
 
 com! Bear :!make
 
@@ -239,6 +247,12 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 tnoremap <Esc> <C-\><C-n>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 "******* Highligh trailing spaces ********************************************
 "highlight ExtraWhitespace ctermbg=red guibg=red
@@ -252,12 +266,15 @@ tnoremap <Esc> <C-\><C-n>
 set laststatus=2
 set noshowmode
 
+autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType haskell setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType typescript setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType typescript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType svelte setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType gluon setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType just setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 autocmd BufNewFile,BufRead *.hbs set filetype=html
 
@@ -277,9 +294,6 @@ set title
 set showmatch
 
 au BufRead,BufNewFile *.redcode,*.red set filetype=redcode
-
-" set expandtab
-set list lcs=tab:\┆\·
 
 " Startify
 autocmd User Startified setlocal cursorline
@@ -347,29 +361,54 @@ set t_ut=
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
-" set background=light  " Fondo del tema: light o dark
-let g:palenight_terminal_italics=1
-colorscheme palenight  " Nombre del tema
+let current_terminal = $TERM
+if current_terminal =~ 'linux'
+	let g:jellybeans_use_lowcolor_black = 1
+	colorscheme industry  " Nombre del tema
 
+	" set expandtab
+	set list lcs=tab:\¬\ 
+
+	let g:lightline = {
+				\ 'colorscheme': 'jellybeans',
+				\ 'active': {
+				\   'left': [
+				\             [ 'mode', 'paste' ],
+				\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ],
+				\           ]
+				\ },
+				\ 'component_function': {
+				\   'cocstatus': 'coc#status',
+				\   'currentfunction': 'CocCurrentFunction'
+				\ },
+			\ }
+else
+	" set background=light  " Fondo del tema: light o dark
+	let g:palenight_terminal_italics=1
+	colorscheme palenight  " Nombre del tema
+
+	" set expandtab
+	set list lcs=tab:\┆\·
+
+	let g:lightline = {
+				\ 'colorscheme': 'palenight',
+				\ 'active': {
+				\   'left': [ [ 'mode', 'paste' ],
+				\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ],
+				\             [ 'neobimu' ] ]
+				\ },
+				\ 'component': {
+				\   'neobimu': 'ネオビム'
+				\ },
+				\ 'component_function': {
+				\   'cocstatus': 'coc#status',
+				\   'currentfunction': 'CocCurrentFunction'
+				\ },
+			\ }
+endif
 
 function! CocCurrentFunction()
 	return get(b:, 'coc_current_function', '')
 endfunction
-
-let g:lightline = {
-			\ 'colorscheme': 'palenight',
-			\ 'active': {
-			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ],
-			\             [ 'neobimu' ] ]
-			\ },
-			\ 'component': {
-			\   'neobimu': 'ネオビム'
-			\ },
-			\ 'component_function': {
-			\   'cocstatus': 'coc#status',
-			\   'currentfunction': 'CocCurrentFunction'
-			\ },
-			\ }
 
 "*****************************************************************************

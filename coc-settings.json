@@ -1,25 +1,37 @@
 {
-	"suggest.timeout": 5000,
-	"diagnostic.enableMessage": "always",
-	"diagnostic.messageTarget": "float",
-	"coc.preferences.colorSupport": true,
-	"diagnostic.warningSign": "!",
-	"suggest.noselect": false,
-	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-			"rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-			"initializationOptions": {
-				"cache": {
-					"directory": "/tmp/ccls-cache"
-				}
-			}
-		},
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"]
-		}
-	}
+  "suggest.timeout": 5000,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.messageTarget": "float",
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.jumpCommand": "tab drop",
+  "diagnostic.warningSign": "!",
+  "suggest.noselect": false,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls-cache"
+        }
+      }
+    },
+    "nim": {
+      "command": "nimlsp",
+      "filetypes": ["nim"],
+      "trace.server": "verbose"
+    },
+    "gluon": {
+      "command": "gluon_language-server",
+      "filetypes": ["gluon"],
+      "trace.server": "verbose"
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
+    }
+  },
+  "java.errors.incompleteClasspath.severity": "ignore"
 }
